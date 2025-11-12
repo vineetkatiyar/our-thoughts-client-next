@@ -16,11 +16,6 @@ export default function AdminDashboard() {
           <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
           <p className="text-gray-600">Welcome back, {user?.name}! Manage your platform.</p>
         </div>
-        <Link href="/dashboard/stories/create">
-          <Button className="bg-[#4DAA57] hover:bg-[#3d8a47] text-white">
-            + Create Story
-          </Button>
-        </Link>
       </div>
 
       {/* Platform Stats */}

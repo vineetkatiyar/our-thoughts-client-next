@@ -11,14 +11,9 @@ import {
   type RegisterFormData,
 } from "@/lib/validatior/authSchema";
 import Link from "next/link";
-
-// import { useAuthStore } from '@/store/auth-store';
+import { useRegister } from "@/hooks/useRegister";
 
 export default function RegisterForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  //   const { register: registerUser } = useAuthStore();
-  const navigation = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -28,39 +23,30 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: RegisterFormData) => {
-    setIsLoading(true);
-    try {
-      //   await registerUser({
-      //     name: data.name,
-      //     email: data.email,
-      //     password: data.password,
-      //     role: 'AUTHOR', // Default role for new users
-      //   });
+  const registerUser = useRegister();
 
-      console.log("Registration successful:", data);
-      navigation.push("/");
+  const onSubmit = (data: RegisterFormData) => {
+    try {
+      registerUser.mutate(data);
     } catch (error: any) {
       setError("root", {
-        message: error.response?.data?.message || "Registration failed",
+        message: error.message || "Registration failed!",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
     <div className="mx-auto max-w-md space-y-6 story-text">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Create Account</h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <h1 className="text-3xl font-bold text-[#4DAA57]">Create Account</h1>
+        <p className="text-[#4DAA57]">
           Enter your details to get started
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-[#4DAA57]">
         {/* Name Field */}
-        <div className="space-y-2">
+        <div className="space-y-2 ">
           <Label htmlFor="name">Full Name</Label>
           <Input
             id="name"
@@ -133,17 +119,17 @@ export default function RegisterForm() {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-          disabled={isLoading}
+          className="w-full bg-green-600 text-white hover:bg-green-700 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+          disabled={registerUser.isPending}
         >
-          {isLoading ? "Creating Account..." : "Create Account"}
+          {registerUser.isPending ? "Signing up..." : "Sign up"}
         </Button>
       </form>
 
       <div className="text-center text-sm">
         <p className="text-gray-600 dark:text-gray-400">
           Already have an account?{" "}
-          <Link href="/signin" className="text-black underline dark:text-white">
+          <Link href="/signin" className="text-[#4DAA57] underline">
             Sign in
           </Link>
         </p>

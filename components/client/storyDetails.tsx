@@ -10,13 +10,13 @@ interface StoryDetailProps {
 
 export default function StoryDetail({ story }: StoryDetailProps) {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Back Button */}
         <div className="mb-6">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg transition-colors"
+            className="inline-flex items-center text-sm font-medium  bg-green-50 hover:bg-green-100 text-[#4DAA57] py-2 px-4 rounded-lg transition-colors"
           >
             <svg
               className="w-4 h-4 mr-2"

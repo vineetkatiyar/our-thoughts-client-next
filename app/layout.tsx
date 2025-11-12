@@ -29,7 +29,6 @@ export default function RootLayout({
     <html lang="en" className={`${geist.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
         <ReactQueryProvider>
-          <Navbar />
           {children}
           <Toaster position="top-right" />
         </ReactQueryProvider>

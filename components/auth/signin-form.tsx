@@ -6,13 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { loginSchema, type LoginFormData } from "@/lib/validatior/authSchema";
-import { useRouter } from "next/navigation";
-// import { useLogin } from '@/hooks/useAuth';
+import { useLogin } from "@/hooks/useLogin";
+import BackButton from "./backButton";
 
 export default function LoginForm() {
-  //   const loginMutation = useLogin();
-  const navigation = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -22,11 +19,11 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const login = useLogin();
+
+  const onSubmit = (data: LoginFormData) => {
     try {
-      //   await loginMutation.mutateAsync(data);
-      console.log("Logging in with data:", data);
-      navigation.push("/");
+      login.mutate(data);
     } catch (error: any) {
       setError("root", {
         message: error.message || "Invalid email or password",
@@ -37,13 +34,14 @@ export default function LoginForm() {
   return (
     <div className="mx-auto max-w-md space-y-6 story-text">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Welcome Back</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Enter your credentials to sign in
-        </p>
+        <h1 className="text-3xl font-bold text-[#4DAA57]">Welcome Back</h1>
+        <p className="text-[#4DAA57]">Enter your credentials to sign in</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 text-[#4DAA57]"
+      >
         {/* Email Field */}
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
@@ -94,21 +92,26 @@ export default function LoginForm() {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-          //   disabled={loginMutation.isPending}
+          className="w-full bg-green-600 text-white hover:bg-green-700 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+          disabled={login.isPending}
         >
-          {/* {loginMutation.isPending ? "Signing in..." : "Sign In"} */}
-          Sign In
+          {login.isPending ? "Signing in..." : "Sign In"}
         </Button>
       </form>
 
-      <div className="text-center text-sm">
-        <p className="text-gray-600 dark:text-gray-400">
+      <div className="flex items-center justify-between text-sm">
+        <BackButton href="/" />
+        <p className="text-gray-600 dark:text-gray-400 flex-1 text-center">
           Don't have an account?{" "}
-          <Link href="/signup" className="text-black underline dark:text-white">
+          <Link
+            href="/signup"
+            className="text-[#4DAA57] hover:text-[#3d8a47] underline font-medium transition-colors duration-200"
+          >
             Sign up
           </Link>
         </p>
+        {/* Empty div for balance */}
+        <div className="w-12"></div>
       </div>
     </div>
   );

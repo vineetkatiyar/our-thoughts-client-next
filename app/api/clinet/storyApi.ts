@@ -1,6 +1,5 @@
 import { StoriesQueryParams, StoriesResponse, StoryDetailResponse } from "@/types/stroyType";
 import axiosApi from "../axios";
-import axiosServer from "@/lib/axiosServer";
 
 export async function getPublicFeed(
   params: StoriesQueryParams & { pageParam?: number }

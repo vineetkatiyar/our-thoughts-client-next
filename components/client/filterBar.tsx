@@ -1,7 +1,6 @@
-// components/client/filterBar.tsx
 "use client";
 
-import { FilterOptions } from "@/types/stroyType";
+import { FilterOptions, SortByOption, SortOrderOption } from "@/types/stroyType";
 import SearchBar from "./searchBar";
 import SortDropdown from "./sortBy";
 
@@ -22,11 +21,11 @@ export default function FilterBar({
     onFiltersChange({ ...filters, search });
   };
 
-  const handleSortByChange = (sortBy: FilterOptions["sortBy"]) => {
+  const handleSortByChange = (sortBy: SortByOption) => {
     onFiltersChange({ ...filters, sortBy });
   };
 
-  const handleSortOrderChange = (sortOrder: FilterOptions["sortOrder"]) => {
+  const handleSortOrderChange = (sortOrder: SortOrderOption) => {
     onFiltersChange({ ...filters, sortOrder });
   };
 
@@ -44,8 +43,8 @@ export default function FilterBar({
         {/* Sort Controls */}
         <div className="flex items-center space-x-4 w-full sm:w-auto">
           <SortDropdown
-            sortBy={filters.sortBy}
-            sortOrder={filters.sortOrder}
+            sortBy={filters.sortBy as SortByOption}
+            sortOrder={filters.sortOrder as SortOrderOption}
             onSortByChange={handleSortByChange}
             onSortOrderChange={handleSortOrderChange}
           />

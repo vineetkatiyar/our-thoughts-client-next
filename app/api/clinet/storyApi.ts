@@ -1,4 +1,4 @@
-import { StoriesQueryParams, StoriesResponse, StoryDetailResponse } from "@/types/stroyType";
+import { CreateStoryRequest, CreateStoryResponse, StoriesQueryParams, StoriesResponse } from "@/types/stroyType";
 import axiosApi from "../axios";
 
 export async function getPublicFeed(
@@ -18,5 +18,11 @@ export async function getPublicFeed(
   if (!response.data) {
     throw new Error('Failed to fetch stories');
   }
+  return response.data;
+}
+
+export const createStory = async (data: CreateStoryRequest) => {
+  const response = await axiosApi.post<CreateStoryResponse>("/story/create", data);
+  console.log("API Response:", response);
   return response.data;
 }

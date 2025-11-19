@@ -1,4 +1,3 @@
-// ✅ app/story/[slug]/page.tsx
 import StoryDetail from "@/components/client/storyDetails";
 import StoryDetailLoading from "@/components/client/storyLoading";
 import axiosServer from "@/lib/axiosServer";

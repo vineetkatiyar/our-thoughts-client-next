@@ -1,44 +1,133 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, User, LogOut, Settings, LayoutDashboard } from "lucide-react";
+import { useUser } from "@/hooks/useUser";
+import { useLogout } from "@/hooks/useLogout";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const { user, isAuthenticated } = useUser();
+  const logout = useLogout();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleUserMenu = () => setIsUserMenuOpen(!isUserMenuOpen);
+
+  const closeAllMenus = () => {
+    setIsMenuOpen(false);
+    setIsUserMenuOpen(false);
+  };
+
+  const handleDropdownItemClick = (action?: () => void) => {
+    closeAllMenus();
+    if (action) action();
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target as Node)
+      ) {
+        closeAllMenus();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const getUserInitial = () => {
+    if (!user?.name) return "U";
+    return user.name.charAt(0).toUpperCase();
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b story-text md:rounded-full rounded max-w-2xl mx-auto mx-5">
-      <div className=" px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white shadow-sm border-b md:rounded-full rounded max-w-2xl mx-auto">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
             <Link
               href="/"
               className="text-xl font-bold text-[#4DAA57] transition-colors duration-200"
+              onClick={closeAllMenus}
             >
               our-thought
             </Link>
           </div>
+
+          {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-4 flex items-center space-x-4">
-              <button className="px-4 py-2 rounded-md text-sm font-medium bg-[#4DAA57] text-white transition-colors duration-200">
-                <Link href="/signin">Login</Link>
-              </button>
+              {isAuthenticated ? (
+                <div className="relative" ref={userMenuRef}>
+                  <button
+                    onClick={toggleUserMenu}
+                    className="flex items-center space-x-2 focus:outline-none group"
+                  >
+                    <div className="w-8 h-8 bg-[#4DAA57] rounded-full flex items-center justify-center text-white text-sm font-medium transition-all duration-200 group-hover:bg-[#3d8a47] cursor-pointer">
+                      {getUserInitial()}
+                    </div>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                      <Link href="/dashboard/profile">
+                        <div
+                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => handleDropdownItemClick()} 
+                        >
+                          <User className="w-4 h-4" />
+                          <span>Profile</span>
+                        </div>
+                      </Link>
+                      {/* Dashboard Link */}
+                      <Link href="/dashboard">
+                        <div
+                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => handleDropdownItemClick()} 
+                        >
+                          <LayoutDashboard className="w-4 h-4" />
+                          <span>Dashboard</span>
+                        </div>
+                      </Link>
+
+                      <div className="border-t border-gray-200 my-1"></div>
+
+                      {/* Logout Button */}
+                      <button
+                        onClick={() => handleDropdownItemClick(logout)}
+                        className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // Login Button
+                <button className="px-4 py-2 rounded-md text-sm font-medium bg-[#4DAA57] text-white transition-colors duration-200 hover:bg-[#3d8a47]">
+                  <Link href="/signin">Login</Link>
+                </button>
+              )}
             </div>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset"
-              style={{
-                color: "#4DAA57",
-              }}
+              style={{ color: "#4DAA57" }}
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -46,12 +135,60 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              <button className="block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 bg-[#4DAA57] text-white">
-                <Link href="/signin">Login</Link>
-              </button>
+              {isAuthenticated ? (
+                <div className="space-y-2">
+                  {/* Dashboard - Mobile */}
+                  <Link href="/dashboard">
+                    <div
+                      className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-gray-100"
+                      onClick={closeAllMenus} // ✅ Auto-close
+                    >
+                      <div className="w-8 h-8 bg-[#4DAA57] rounded-full flex items-center justify-center text-white text-sm font-medium">
+                        {getUserInitial()}
+                      </div>
+                      <div>
+                        <div className="text-gray-900 font-medium">
+                          {user?.name}
+                        </div>
+                        <div className="text-xs text-gray-500">Dashboard</div>
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Settings - Mobile */}
+                  <Link href="/dashboard/settings">
+                    <div
+                      className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
+                      onClick={closeAllMenus} // ✅ Auto-close
+                    >
+                      <Settings className="w-5 h-5" />
+                      <span>Settings</span>
+                    </div>
+                  </Link>
+
+                  {/* Logout - Mobile */}
+                  <button
+                    onClick={() => handleDropdownItemClick(logout)} // ✅ Auto-close + logout
+                    className="flex items-center space-x-3 w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
+                  >
+                    <LogOut className="w-5 h-5" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              ) : (
+                // Login Button - Mobile
+                <button
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 bg-[#4DAA57] text-white hover:bg-[#3d8a47]"
+                  onClick={closeAllMenus} // ✅ Auto-close
+                >
+                  <Link href="/signin">Login</Link>
+                </button>
+              )}
             </div>
           </div>
         )}

@@ -3,11 +3,11 @@ export interface Author {
     name: string;
   }
   
-  export interface Story {
+  export interface Story extends CreateStoryRequest {
     id: string;
     slug: string;
     title: string;
-    content: string;
+    content: any;
     coverImage: string | null;
     status: "PUBLISHED" | "DRAFT";
     visibility: "PUBLIC" | "PRIVATE";
@@ -56,10 +56,31 @@ export interface Author {
     sortBy?: string;
     sortOrder?: "asc" | "desc";
   }
+
+  export interface StoriesAdminQueryParams {
+    page?: number;
+    limit?: number;
+    search: string;
+    sortBy: string;
+    sortOrder: "asc" | "desc";
+  }
   
-  // Filter options for the UI
   export interface FilterOptions {
     search: string;
-    sortBy: SortByOption;
-    sortOrder: SortOrderOption;
+    sortBy: string; // Change from SortByOption to string for compatibility
+    sortOrder: "asc" | "desc";
   }
+
+export interface CreateStoryRequest {
+  title: string;
+  content: string;
+  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
+  visibility: 'PUBLIC' | 'PRIVATE';
+}
+
+
+export interface CreateStoryResponse {
+  message: string;
+  story: Story;
+  success: boolean;
+}

@@ -1,3 +1,4 @@
+// components/client/filterBar.tsx
 "use client";
 
 import { FilterOptions } from "@/types/stroyType";
@@ -30,7 +31,7 @@ export default function FilterBar({
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+    <div className="bg-white p-4 rounded-lg border border-gray-200">
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         {/* Search Bar */}
         <div className="flex-1 w-full sm:max-w-md">

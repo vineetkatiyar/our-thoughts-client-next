@@ -1,21 +1,48 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
-import { Search, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import StoriesTable from "@/components/admin/dashboard/storiesTable";
 import { useStories } from "@/hooks/adminPanel/useStories";
+import { useEffect, useState } from "react";
+import { StoriesAdminQueryParams } from "@/types/stroyType";
+import FilterBar from "@/components/client/filterBar";
+import Pagination from "@/components/admin/dashboard/pagination";
+
+const DEFAULT_FILTERS: StoriesAdminQueryParams = {
+  page: 1,
+  limit: 10,
+  search: "",
+  sortBy: "createdAt",
+  sortOrder: "desc",
+};
 
 export default function StoriesPage() {
+  const [filters, setFilters] =
+    useState<StoriesAdminQueryParams>(DEFAULT_FILTERS);
   const { isAdmin } = useUser();
-  const { data, isLoading, error } = useStories();
+
+  const { data, isLoading, error } = useStories(filters);
+
   const stories = data?.data || [];
+  const pagination = data?.pagination;
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, page: 1 }));
+  }, [filters.search, filters.sortBy, filters.sortOrder]);
+
+  const handleFiltersChange = (newFilters: StoriesAdminQueryParams) => {
+    setFilters(newFilters);
+  };
+
+  const handlePageChange = (page: number) => {
+    setFilters((prev) => ({ ...prev, page }));
+  };
 
   return (
-    <div className="space-y-6 story-text">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
@@ -29,7 +56,7 @@ export default function StoriesPage() {
           </p>
         </div>
         <Link href="/dashboard/stories/create">
-          <Button className="bg-[#4DAA57] hover:bg-[#3d8a47] text-white whitespace-nowrap">
+          <Button className="bg-[#4DAA57] hover:bg-[#3d8a47] text-white whitespace-nowrap cursor-pointer">
             <Plus className="w-4 h-4 mr-2" />
             Create Story
           </Button>
@@ -45,16 +72,23 @@ export default function StoriesPage() {
         </div>
       )}
 
-      {/* Search and Table */}
+      <FilterBar
+        filters={filters}
+        onFiltersChange={handleFiltersChange}
+        resultsCount={pagination?.totalItems}
+        isLoading={isLoading}
+      />
+
+      {/* Stories Table */}
       <Card>
         <CardHeader className="pb-3">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <CardTitle className="text-lg">
-              Stories {data?.pagination && `(${data.pagination.totalItems})`}
+              Stories {pagination && `(${pagination.totalItems})`}
             </CardTitle>
-            <div className="relative w-full sm:w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input placeholder="Search stories..." className="pl-10" />
+            <div className="text-sm text-gray-500">
+              {pagination &&
+                `Page ${pagination.currentPage} of ${pagination.totalPages}`}
             </div>
           </div>
         </CardHeader>
@@ -64,15 +98,27 @@ export default function StoriesPage() {
             isLoading={isLoading}
             canEditAll={isAdmin}
           />
+
+          {pagination && pagination.totalPages > 1 && (
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={handlePageChange}
+              className="border-t"
+            />
+          )}
         </CardContent>
       </Card>
 
-      {/* Empty state */}
-      {error && (
+      {!isLoading && stories.length === 0 && (
         <Card>
           <CardContent className="p-12 text-center">
             <div className="space-y-4">
-              <p className="text-gray-500 text-lg">No stories found</p>
+              <p className="text-gray-500 text-lg">
+                {filters.search
+                  ? "No stories found matching your search"
+                  : "No stories found"}
+              </p>
               <Link href="/dashboard/stories/create">
                 <Button className="bg-[#4DAA57] hover:bg-[#3d8a47] text-white">
                   Create Your First Story

@@ -9,7 +9,7 @@ import { BookA, LayoutDashboard, User } from "lucide-react";
 const adminMenu = [
   { label: "Dashboard", href: "/dashboard", icon: <LayoutDashboard /> },
   { label: "All Stories", href: "/dashboard/stories", icon: <BookA /> },
-  { label: "User Management", href: "#", icon: <User /> },
+  { label: "User Management", href: "/dashboard/users", icon: <User /> },
 ];
 
 const authorMenu = [
@@ -35,7 +35,7 @@ export default function DashboardSidebar({
 
   if (!mobile) {
     return (
-      <aside className="w-64 bg-white border-r border-gray-200 h-full ">
+      <aside className="w-60 bg-white h-full ">
         <div className="p-6">
           <div className="mb-8">
             <h2 className="text-lg font-semibold text-gray-900">

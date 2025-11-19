@@ -133,3 +133,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.markdown-content {
+  line-height: 1.6;
+}
+
+.markdown-content p {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-content h1, 
+.markdown-content h2, 
+.markdown-content h3, 
+.markdown-content h4 {
+  margin-top: 0.1rem;
+  margin-bottom: 0rem;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+
+}
+
+.markdown-content li {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+}
+
+.markdown-content blockquote {
+  margin: 0rem 0;
+}
+
+.markdown-content pre {
+  margin: 0rem 0;
+}

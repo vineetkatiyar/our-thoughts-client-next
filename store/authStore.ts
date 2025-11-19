@@ -1,12 +1,7 @@
+import { User } from '@/types/userType'
 import {create} from 'zustand'
 import {persist} from 'zustand/middleware'
 
-type User = {
-    id :string
-    name :string
-    email :string
-    role :string
-}
 
 type AuthState = {
     user :User | null

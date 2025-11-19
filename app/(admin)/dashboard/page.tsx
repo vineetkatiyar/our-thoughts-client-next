@@ -6,12 +6,11 @@ import { DashboardLoading } from "@/components/admin/dashboard/dashboardLoading"
 import { useUser } from "@/hooks/useUser";
 
 export default function DashboardPage() {
-  const { user, isLoading, isAdmin } = useUser();
+  const { isLoading, isAdmin } = useUser();
 
   if (isLoading) {
     return <DashboardLoading />;
   }
-
   return (
     <div className="space-y-6">
       {isAdmin ? <AdminDashboard /> : <AuthorDashboard />}

@@ -189,7 +189,7 @@ export default function Feed() {
         >
           <div className="flex items-center space-x-2 text-gray-600">
             <svg
-              className="animate-spin h-5 w-5"
+              className="animate-spin h-10 w-10"
               viewBox="0 0 24 24"
               fill="none"
             >
@@ -208,7 +208,6 @@ export default function Feed() {
                 strokeLinecap="round"
               ></path>
             </svg>
-            <span className="text-sm">Loading more stories...</span>
           </div>
         </div>
       )}

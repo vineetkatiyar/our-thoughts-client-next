@@ -4,17 +4,41 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
+import {
+  BookOpen,
+  Users,
+  Edit3,
+  CheckCircle,
+  Zap,
+  BarChart3,
+  UserPlus,
+  FileText,
+  Settings,
+} from "lucide-react";
+import { useDashboardStats } from "@/hooks/adminPanel/dashboard/useDashboardStats";
+import { DashboardLoading } from "./dashboardLoading";
 
 export default function AdminDashboard() {
   const { user } = useUser();
+  const { data: stats, isLoading, isError } = useDashboardStats();
+
+  if (isLoading) {
+    return <DashboardLoading />;
+  }
+  if (isError) {
+    return <div>Error loading stats.</div>;
+  }
+
 
   return (
-    <div className="space-y-6 story-text">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600">Welcome back, {user?.name}! Manage your platform.</p>
+          <p className="text-gray-600">
+            Welcome back, {user?.name}! Manage your platform.
+          </p>
         </div>
       </div>
 
@@ -24,11 +48,15 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Stories</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">47</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Total Stories
+                </p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {stats.totalStories}
+                </p>
               </div>
               <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-lg">📚</span>
+                <BookOpen className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -39,10 +67,12 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Users</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">23</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {stats.totalUsers}
+                </p>
               </div>
               <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <span className="text-lg">👥</span>
+                <Users className="w-5 h-5 text-purple-600" />
               </div>
             </div>
           </CardContent>
@@ -53,10 +83,12 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Authors</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">15</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {stats.authors}
+                </p>
               </div>
               <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-lg">✍️</span>
+                <Edit3 className="w-5 h-5 text-green-600" />
               </div>
             </div>
           </CardContent>
@@ -67,10 +99,12 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Published</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">32</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {stats.published}
+                </p>
               </div>
               <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-lg">✅</span>
+                <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
             </div>
           </CardContent>
@@ -82,27 +116,33 @@ export default function AdminDashboard() {
         <Card className="border-gray-200">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <span>⚡</span>
+              <Zap className="w-5 h-5" />
               <span>Quick Actions</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <Link href="/dashboard/stories">
-              <Button className="w-full justify-start bg-[#4DAA57] hover:bg-[#3d8a47] text-white h-12">
-                <span className="text-lg mr-2">📚</span>
+              <Button className="w-full justify-start bg-[#4DAA57] hover:bg-[#3d8a47] text-white h-12 cursor-pointer">
+                <BookOpen className="w-5 h-5 mr-2" />
                 Manage All Stories
               </Button>
             </Link>
-            <Link href="/dashboard/users">
-              <Button variant="outline" className="w-full justify-start h-12">
-                <span className="text-lg mr-2">👥</span>
-                User Management
+            <Link href="/dashboard/stories/create">
+              <Button
+                variant="outline"
+                className="w-full justify-start h-12 cursor-pointer"
+              >
+                <Edit3 className="w-5 h-5 mr-2" />
+                Create New Story
               </Button>
             </Link>
-            <Link href="/dashboard/stories/create">
-              <Button variant="outline" className="w-full justify-start h-12">
-                <span className="text-lg mr-2">✨</span>
-                Create New Story
+            <Link href="#">
+              <Button
+                variant="outline"
+                className="w-full justify-start h-12 cursor-pointer"
+              >
+                <Users className="w-5 h-5 mr-2" />
+                User Management
               </Button>
             </Link>
           </CardContent>
@@ -111,33 +151,41 @@ export default function AdminDashboard() {
         <Card className="border-gray-200">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <span>📊</span>
+              <BarChart3 className="w-5 h-5" />
               <span>Recent Activity</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                <span className="text-lg">🆕</span>
+                <UserPlus className="w-5 h-5 text-green-600 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-900">New user registered</p>
-                  <p className="text-sm text-gray-500">John Doe joined 2 hours ago</p>
+                  <p className="font-medium text-gray-900">
+                    New user registered
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    John Doe joined 2 hours ago
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                <span className="text-lg">📖</span>
+                <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div>
                   <p className="font-medium text-gray-900">Story published</p>
-                  <p className="text-sm text-gray-500">"Winter Tales" by Sarah</p>
+                  <p className="text-sm text-gray-500">
+                    "Winter Tales" by Sarah
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                <span className="text-lg">✏️</span>
+                <Edit3 className="w-5 h-5 text-orange-600 mt-0.5" />
                 <div>
                   <p className="font-medium text-gray-900">Story updated</p>
-                  <p className="text-sm text-gray-500">Mike edited "My Journey"</p>
+                  <p className="text-sm text-gray-500">
+                    Mike edited "My Journey"
+                  </p>
                 </div>
               </div>
             </div>
@@ -149,12 +197,13 @@ export default function AdminDashboard() {
       <Card className="border-blue-200 bg-blue-50">
         <CardContent className="p-6">
           <div className="flex items-start space-x-3">
-            <span className="text-2xl">🔧</span>
+            <Settings className="w-6 h-6 text-blue-600 mt-1" />
             <div>
               <h3 className="font-semibold text-gray-900 mb-2">Admin Tools</h3>
               <p className="text-gray-700">
-                You have full access to manage all stories and users on the platform.
-                Use the navigation to access different management sections.
+                You have full access to manage all stories and users on the
+                platform. Use the navigation to access different management
+                sections.
               </p>
             </div>
           </div>

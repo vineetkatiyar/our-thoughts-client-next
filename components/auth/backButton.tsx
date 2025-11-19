@@ -25,7 +25,7 @@ export default function BackButton({
     <Button
       variant="ghost"
       onClick={handleClick}
-      className={`flex items-center space-x-2 text-[#4DAA57] hover:text-[#3d8a47] hover:bg-green-50 transition-all duration-200 ${className}`}
+      className={`flex items-center space-x-2 text-[#4DAA57] hover:text-[#3d8a47] hover:bg-green-50 transition-all duration-200 cursor-pointer ${className}`}
     >
       <svg 
         className="w-4 h-4" 

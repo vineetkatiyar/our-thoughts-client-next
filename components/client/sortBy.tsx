@@ -19,8 +19,6 @@ interface SortDropdownProps {
 const sortOptions = [
   { value: "createdAt" as SortByOption, label: "Date Created" },
   { value: "publishedAt" as SortByOption, label: "Date Published" },
-  { value: "title" as SortByOption, label: "Title" },
-  { value: "author" as SortByOption, label: "Author" },
 ];
 
 export default function SortDropdown({

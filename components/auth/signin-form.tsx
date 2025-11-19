@@ -8,8 +8,13 @@ import Link from "next/link";
 import { loginSchema, type LoginFormData } from "@/lib/validatior/authSchema";
 import { useLogin } from "@/hooks/useLogin";
 import BackButton from "./backButton";
+import { Spinner } from "../ui/spinner";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -31,8 +36,12 @@ export default function LoginForm() {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="mx-auto max-w-md space-y-6 story-text">
+    <div className="mx-auto max-w-md space-y-6">
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold text-[#4DAA57]">Welcome Back</h1>
         <p className="text-[#4DAA57]">Enter your credentials to sign in</p>
@@ -59,22 +68,26 @@ export default function LoginForm() {
 
         {/* Password Field */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="/forgot-password"
-              className="text-sm text-black underline dark:text-white"
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              {...register("password")}
+              className={errors.password ? "border-red-500" : ""}
+            />
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4DAA57] hover:text-green-700 focus:outline-none cursor-pointer"
+              onClick={togglePasswordVisibility}
             >
-              Forgot password?
-            </a>
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" />
+              ) : (
+                <Eye className="h-4 w-4" />
+              )}
+            </button>
           </div>
-          <Input
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-            {...register("password")}
-            className={errors.password ? "border-red-500" : ""}
-          />
           {errors.password && (
             <p className="text-sm text-red-500">{errors.password.message}</p>
           )}
@@ -92,10 +105,10 @@ export default function LoginForm() {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full bg-green-600 text-white hover:bg-green-700 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+          className="w-full bg-green-600 text-white hover:bg-green-700 dark:bg-white dark:text-black dark:hover:bg-gray-200 cursor-pointer"
           disabled={login.isPending}
         >
-          {login.isPending ? "Signing in..." : "Sign In"}
+          {login.isPending ? <Spinner /> : "Sign In"}
         </Button>
       </form>
 

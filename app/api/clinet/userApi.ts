@@ -1,19 +1,8 @@
+import { User } from "@/types/userType";
 import axiosApi from "../axios";
 
 type Role = "ADMIN" | "AUTHOR" | "READER";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: Role;
-  status: "ACTIVE" | "BANNED" | "DEACTIVATED"; 
-  visibility: "PUBLIC" | "PRIVATE"; 
-  bio: string | null; 
-  avatar: string | null; 
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 export interface RegisterPaylod {
   name: string;

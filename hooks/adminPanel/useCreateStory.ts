@@ -22,7 +22,7 @@ export const useCreateStory = () => {
     onError: (error: Error) => {
       setError(error.message);
     },
-    onSettle: () => {
+    onSettled: () => {
       setLoading(false);
     },
   });

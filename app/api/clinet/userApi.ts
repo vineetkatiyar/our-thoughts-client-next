@@ -7,6 +7,10 @@ export interface User {
   name: string;
   email: string;
   role: Role;
+  status: "ACTIVE" | "BANNED" | "DEACTIVATED"; 
+  visibility: "PUBLIC" | "PRIVATE"; 
+  bio: string | null; 
+  avatar: string | null; 
   createdAt: Date;
   updatedAt: Date;
 }

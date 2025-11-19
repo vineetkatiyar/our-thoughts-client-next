@@ -22,26 +22,12 @@ export default function Navbar() {
     setIsUserMenuOpen(false);
   };
 
-  const handleDropdownItemClick = (action?: () => void) => {
+  const handleLogout = () => {
+    logout();
     closeAllMenus();
-    if (action) action();
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        userMenuRef.current &&
-        !userMenuRef.current.contains(event.target as Node)
-      ) {
-        closeAllMenus();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // REMOVED the click outside detection completely
 
   const getUserInitial = () => {
     if (!user?.name) return "U";
@@ -57,7 +43,6 @@ export default function Navbar() {
             <Link
               href="/"
               className="text-xl font-bold text-[#4DAA57] transition-colors duration-200"
-              onClick={closeAllMenus}
             >
               our-thought
             </Link>
@@ -80,21 +65,15 @@ export default function Navbar() {
                   {/* Dropdown Menu */}
                   {isUserMenuOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                      <Link href="/dashboard/profile">
-                        <div
-                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleDropdownItemClick()} 
-                        >
+                      <Link href="/dashboard/profile" className="block">
+                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                           <User className="w-4 h-4" />
                           <span>Profile</span>
                         </div>
                       </Link>
-                      {/* Dashboard Link */}
-                      <Link href="/dashboard">
-                        <div
-                          className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleDropdownItemClick()} 
-                        >
+
+                      <Link href="/dashboard" className="block">
+                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                           <LayoutDashboard className="w-4 h-4" />
                           <span>Dashboard</span>
                         </div>
@@ -102,9 +81,8 @@ export default function Navbar() {
 
                       <div className="border-t border-gray-200 my-1"></div>
 
-                      {/* Logout Button */}
                       <button
-                        onClick={() => handleDropdownItemClick(logout)}
+                        onClick={handleLogout}
                         className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
                       >
                         <LogOut className="w-4 h-4" />
@@ -114,10 +92,12 @@ export default function Navbar() {
                   )}
                 </div>
               ) : (
-                // Login Button
-                <button className="px-4 py-2 rounded-md text-sm font-medium bg-[#4DAA57] text-white transition-colors duration-200 hover:bg-[#3d8a47]">
-                  <Link href="/signin">Login</Link>
-                </button>
+                <Link
+                  href="/signin"
+                  className="px-4 py-2 rounded-md text-sm font-medium bg-[#4DAA57] text-white transition-colors duration-200 hover:bg-[#3d8a47]"
+                >
+                  Login
+                </Link>
               )}
             </div>
           </div>
@@ -136,18 +116,15 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - NO AUTO-CLOSE */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               {isAuthenticated ? (
                 <div className="space-y-2">
-                  {/* Dashboard - Mobile */}
-                  <Link href="/dashboard">
-                    <div
-                      className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-gray-100"
-                      onClick={closeAllMenus} // ✅ Auto-close
-                    >
+                  {/* Dashboard - Mobile - NO onClick */}
+                  <Link href="/dashboard" className="block">
+                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-gray-100">
                       <div className="w-8 h-8 bg-[#4DAA57] rounded-full flex items-center justify-center text-white text-sm font-medium">
                         {getUserInitial()}
                       </div>
@@ -160,20 +137,17 @@ export default function Navbar() {
                     </div>
                   </Link>
 
-                  {/* Settings - Mobile */}
-                  <Link href="/dashboard/settings">
-                    <div
-                      className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
-                      onClick={closeAllMenus} // ✅ Auto-close
-                    >
-                      <Settings className="w-5 h-5" />
-                      <span>Settings</span>
+                  {/* Profile - Mobile - NO onClick */}
+                  <Link href="/dashboard/profile" className="block">
+                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">
+                      <User className="w-5 h-5" />
+                      <span>My Profile</span>
                     </div>
                   </Link>
 
-                  {/* Logout - Mobile */}
+                  {/* Logout - Mobile - ONLY logout has onClick */}
                   <button
-                    onClick={() => handleDropdownItemClick(logout)} // ✅ Auto-close + logout
+                    onClick={handleLogout}
                     className="flex items-center space-x-3 w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
                   >
                     <LogOut className="w-5 h-5" />
@@ -181,13 +155,12 @@ export default function Navbar() {
                   </button>
                 </div>
               ) : (
-                // Login Button - Mobile
-                <button
-                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 bg-[#4DAA57] text-white hover:bg-[#3d8a47]"
-                  onClick={closeAllMenus} // ✅ Auto-close
-                >
-                  <Link href="/signin">Login</Link>
-                </button>
+                // Login Button - Mobile - NO onClick
+                <Link href="/signin" className="block w-full">
+                  <div className="w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 bg-[#4DAA57] text-white hover:bg-[#3d8a47]">
+                    Login
+                  </div>
+                </Link>
               )}
             </div>
           </div>

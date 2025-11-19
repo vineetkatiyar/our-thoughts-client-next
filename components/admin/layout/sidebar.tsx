@@ -4,17 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { BookA, LayoutDashboard, User } from "lucide-react";
+import { BookA, HousePlus, LayoutDashboard, User } from "lucide-react";
 
 const adminMenu = [
   { label: "Dashboard", href: "/dashboard", icon: <LayoutDashboard /> },
   { label: "All Stories", href: "/dashboard/stories", icon: <BookA /> },
   { label: "User Management", href: "/dashboard/users", icon: <User /> },
+  { label: "Home", href: "/", icon: <HousePlus /> },
 ];
 
 const authorMenu = [
   { label: "Dashboard", href: "/dashboard", icon: <LayoutDashboard /> },
   { label: "My Stories", href: "/dashboard/stories", icon: <BookA /> },
+  { label: "Home", href: "/", icon: <HousePlus /> },
 ];
 
 interface DashboardSidebarProps {

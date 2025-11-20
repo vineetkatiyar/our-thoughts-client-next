@@ -42,7 +42,7 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header - Fixed */}
-      <div className="fixed top-0 left-0 right-0 z-50 shadow-sm md:border-b border-gray-200 h-[73px]">
+      <div className="fixed top-0 left-0 right-0 z-50 shadow-sm h-[73px]">
         <DashboardHeader onMenuClick={() => setIsMobileSidebarOpen(true)} />
       </div>
       

@@ -76,8 +76,8 @@ export default function AuthorDashboard() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">My Dashboard</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">My Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-300">
             Welcome back, {user?.name}! Ready to write your next story?
           </p>
         </div>
@@ -89,10 +89,10 @@ export default function AuthorDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
                   Total Stories
                 </p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.totalStories}
                 </p>
               </div>
@@ -107,8 +107,8 @@ export default function AuthorDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Published</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Published</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.published}
                 </p>
               </div>
@@ -123,8 +123,8 @@ export default function AuthorDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Drafts</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Drafts</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.drafts}
                 </p>
               </div>
@@ -177,7 +177,7 @@ export default function AuthorDashboard() {
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className="flex justify-between items-center p-3 bg-gray-50 rounded-lg animate-pulse"
+                    className="flex justify-between items-center p-3 bg-gray-50 dark:bg-muted rounded-lg animate-pulse"
                   >
                     <div className="space-y-2 flex-1">
                       <div className="h-4 bg-gray-200 rounded w-3/4"></div>
@@ -188,7 +188,7 @@ export default function AuthorDashboard() {
                 ))}
               </div>
             ) : storiesError ? (
-              <div className="text-center py-4 text-gray-500">
+              <div className="text-center py-4 text-gray-500 dark:text-gray-300">
                 Error loading recent stories
               </div>
             ) : recentStories.length > 0 ? (
@@ -196,10 +196,10 @@ export default function AuthorDashboard() {
                 {recentStories.map((story: Story) => (
                   <div
                     key={story.id}
-                    className="flex justify-between items-center p-3 bg-gray-50 rounded-lg"
+                    className="flex justify-between items-center p-3 bg-gray-50 dark:bg-muted rounded-lg"
                   >
                     <div>
-                      <p className="font-medium text-gray-900">{story.title}</p>
+                      <p className="font-medium text-gray-900 dark:text-gray-100">{story.title}</p>
                       <p className="text-sm text-gray-500 flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         Last updated: {formatTimeAgo(story.updatedAt)}
@@ -223,17 +223,17 @@ export default function AuthorDashboard() {
       </div>
 
       {/* Writing Tips */}
-      <Card className="border-[#4DAA57] bg-green-50">
+      <Card className="border-[#4DAA57] bg-green-50 dark:bg-green-900/20">
         <CardContent className="p-6">
           <div className="flex items-start space-x-3">
             <Lightbulb className="w-6 h-6 text-[#4DAA57] mt-1" />
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Writing Tip</h3>
-              <p className="text-gray-700">
+              <h3 className="font-semibold text-gray-900 mb-2 dark:text-gray-100">Writing Tip</h3>
+              <p className="text-gray-700 dark:text-gray-300">
                 "The first draft is just you telling yourself the story." -
                 Terry Pratchett
               </p>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 Don't worry about perfection. Just start writing and refine
                 later.
               </p>

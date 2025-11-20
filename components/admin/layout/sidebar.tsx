@@ -73,7 +73,7 @@ export default function DashboardSidebar({
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               {isAdmin ? "Admin Panel" : "My Dashboard"}
             </h2>
           </div>
@@ -88,7 +88,7 @@ export default function DashboardSidebar({
                 className={`flex items-center space-x-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors ${
                   pathname === item.href
                     ? "bg-[#4DAA57] text-white"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    : "text-gray-700 dark:text-gray-300 dark:hover:bg-muted hover:bg-gray-50 hover:text-gray-900"
                 }`}
               >
                 <span className="text-lg">{item.icon}</span>

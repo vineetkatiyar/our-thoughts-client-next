@@ -59,7 +59,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
         </div>
 
         {/* Story Card */}
-        <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <article className="rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           {/* Cover Image (if available) */}
           {story.coverImage && (
             <div className="w-full h-64 bg-gray-200">
@@ -83,7 +83,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                   {story.author.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900 text-lg">
+                  <div className="font-semibold text-gray-900 dark:text-[#4DAA57] text-lg">
                     {story.author.name}
                   </div>
                   <div className="text-sm text-gray-500">
@@ -97,7 +97,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
             </div>
 
             {/* Story Title */}
-            <h1 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-[#4DAA57] mb-6 leading-tight">
               {story.title}
             </h1>
 
@@ -108,39 +108,39 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                 components={{
                   // FIXED: Minimal spacing
                   h1: ({ children }) => (
-                    <h1 className="text-2xl font-bold text-gray-900">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                       {children}
                     </h1>
                   ),
                   h2: ({ children }) => (
-                    <h2 className="text-xl font-bold text-gray-900">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                       {children}
                     </h2>
                   ),
                   h3: ({ children }) => (
-                    <h3 className="text-lg font-bold text-gray-900">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                       {children}
                     </h3>
                   ),
                   h4: ({ children }) => (
-                    <h4 className="text-base font-bold text-gray-900">
+                    <h4 className="text-base font-bold text-gray-900 dark:text-white">
                       {children}
                     </h4>
                   ),
                   p: ({ children }) => (
-                    <p className="text-gray-700 leading-normal">
+                    <p className="text-gray-700 leading-normal dark:text-gray-100">
                       {" "}
                       {/* mb-4 → mb-2 */}
                       {children}
                     </p>
                   ),
                   strong: ({ children }) => (
-                    <strong className="font-bold text-gray-900">
+                    <strong className="font-bold text-gray-900 dark:text-white">
                       {children}
                     </strong>
                   ),
                   em: ({ children }) => (
-                    <em className="italic text-gray-800">{children}</em>
+                    <em className="italic text-gray-800 dark:text-gray-100">{children}</em>
                   ),
                   ul: ({ children }) => (
                     <ul className="list-disc list-inside space-y-0 ml-4">
@@ -157,14 +157,14 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                     </ol>
                   ),
                   li: ({ children }) => (
-                    <li className="text-gray-700 leading-normal mb-0">
+                    <li className="text-gray-700 leading-normal mb-0 dark:text-gray-100">
                       {" "}
                       {/* mb-1 → mb-0 */}
                       {children}
                     </li>
                   ),
                   blockquote: ({ children }) => (
-                    <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 bg-green-50 py-1 rounded-r">
+                    <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 dark:text-gray-100 bg-green-50 py-1 rounded-r">
                       {children}
                     </blockquote>
                   ),
@@ -173,7 +173,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
 
                     if (isInline) {
                       return (
-                        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800">
+                        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm dark:text-gray-100 font-mono text-gray-800">
                           {children}
                         </code>
                       );
@@ -211,12 +211,12 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                     </tbody>
                   ),
                   th: ({ children }) => (
-                    <th className="px-3 py-1 text-left font-semibold text-gray-900 border-b">
+                    <th className="px-3 py-1 text-left font-semibold text-gray-900 dark:text-white border-b">
                       {children}
                     </th>
                   ),
                   td: ({ children }) => (
-                    <td className="px-3 py-1 text-gray-700 border-b">
+                    <td className="px-3 py-1 text-gray-700 dark:text-gray-100 border-b">
                       {children}
                     </td>
                   ),

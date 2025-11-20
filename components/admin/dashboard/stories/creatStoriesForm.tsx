@@ -159,10 +159,10 @@ export default function CreateStoryForm({
           </Button>
 
           <div>
-            <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
+            <h1 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-gray-100">
               {mode === "create" ? "Create Story" : "Edit Story"}
             </h1>
-            <p className="text-gray-600 text-sm lg:text-base mt-1 hidden sm:block">
+            <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base mt-1 hidden sm:block">
               {mode === "create"
                 ? "Share your creativity"
                 : "Update your story"}
@@ -213,7 +213,7 @@ export default function CreateStoryForm({
           <div className="lg:col-span-2 space-y-4 lg:space-y-6">
             {/* Title Input */}
             <Card className="border-0 lg:border shadow-sm lg:shadow">
-              <CardHeader className="pb-3 lg:pb-4">
+              <CardHeader className="">
                 <CardTitle className="text-base lg:text-lg flex items-center gap-2">
                   <Type className="w-4 h-4 lg:w-5 lg:h-5" />
                   Story Title
@@ -223,7 +223,7 @@ export default function CreateStoryForm({
                 <Textarea
                   {...register("title")}
                   placeholder="Enter a captivating title..."
-                  className="text-base min-h-[60px] lg:min-h-[80px] resize-y font-serif leading-relaxed border-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-0 text-lg lg:text-xl"
+                  className="min-h-[60px] lg:min-h-[80px] resize-y font-serif leading-relaxed border-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-1 text-lg lg:text-xl"
                   onBlur={handleAutoSave}
                   onKeyDown={handleTitleKeyDown} // ✅ FIX: Better keydown handler
                 />
@@ -348,7 +348,7 @@ export default function CreateStoryForm({
             </Card>
 
             {/* Actions */}
-            <Card className="border-0 lg:border shadow-sm lg:shadow sticky bottom-2 lg:static bg-white/95 lg:bg-white backdrop-blur-sm lg:backdrop-blur-none z-10">
+            <Card className="border-0 lg:border shadow-sm lg:shadow sticky bottom-2 lg:static backdrop-blur-sm lg:backdrop-blur-none z-10">
               <CardContent className="p-4 lg:p-6">
                 <div className="space-y-2 lg:space-y-3">
                   <Button

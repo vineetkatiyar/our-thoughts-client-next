@@ -35,8 +35,8 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-200">
             Welcome back, {user?.name}! Manage your platform.
           </p>
         </div>
@@ -48,10 +48,10 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-100">
                   Total Stories
                 </p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.totalStories}
                 </p>
               </div>
@@ -66,8 +66,8 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Users</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-100">Total Users</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                   {stats.totalUsers}
                 </p>
               </div>
@@ -82,8 +82,8 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Authors</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-100">Authors</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1 dark:text-gray-100">
                   {stats.authors}
                 </p>
               </div>
@@ -98,8 +98,8 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Published</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-100">Published</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1 dark:text-gray-100">
                   {stats.published}
                 </p>
               </div>
@@ -157,10 +157,10 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <UserPlus className="w-5 h-5 text-green-600 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-900">
+                  <p className="font-medium text-gray-900 dark:text-gray-100">
                     New user registered
                   </p>
                   <p className="text-sm text-gray-500">
@@ -169,20 +169,20 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-900">Story published</p>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Story published</p>
                   <p className="text-sm text-gray-500">
                     "Winter Tales" by Sarah
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <Edit3 className="w-5 h-5 text-orange-600 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-900">Story updated</p>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Story updated</p>
                   <p className="text-sm text-gray-500">
                     Mike edited "My Journey"
                   </p>
@@ -194,13 +194,13 @@ export default function AdminDashboard() {
       </div>
 
       {/* Admin Notice */}
-      <Card className="border-blue-200 bg-blue-50">
+      <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20">
         <CardContent className="p-6">
           <div className="flex items-start space-x-3">
             <Settings className="w-6 h-6 text-blue-600 mt-1" />
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Admin Tools</h3>
-              <p className="text-gray-700">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Admin Tools</h3>
+              <p className="text-gray-700 dark:text-gray-300">
                 You have full access to manage all stories and users on the
                 platform. Use the navigation to access different management
                 sections.

@@ -30,7 +30,7 @@ export default function UsersPage() {
       <div className="flex items-center justify-center h-64">
         <Card>
           <CardContent className="p-6 text-center">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Access Denied
             </h2>
             <p className="text-gray-600 mt-2">
@@ -70,14 +70,14 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
-          <p className="text-gray-600 mt-1">Manage all users on the platform</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">User Management</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-1">Manage all users on the platform</p>
         </div>
       </div>
 
       {/* Show error if any */}
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 dark:bg-red-800 border border-red-200 rounded-lg p-4">
           <p className="text-red-700">
             Error loading users: {(error as Error).message}
           </p>

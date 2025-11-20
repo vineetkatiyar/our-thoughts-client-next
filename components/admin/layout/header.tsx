@@ -48,7 +48,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-40">
+    <header className=" sticky top-0 z-40 dark:bg-black">
       <div className="flex justify-between items-center px-4 lg:px-6 py-3">
         {/* Left Side - Menu + Name */}
         <div className="flex items-center space-x-3">
@@ -66,7 +66,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
           <div className="flex items-center space-x-3">
             {/* Mobile: Only Name */}
             <div className="lg:hidden">
-              <h1 className="text-base font-semibold text-gray-900">
+              <h1 className="text-base font-semibold text-gray-900 dark:text-gray-100">
                 {user?.name?.split(" ")[0]}
               </h1>
               <p className="text-xs text-gray-500 capitalize">
@@ -76,10 +76,10 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
 
             {/* Desktop: Full Welcome */}
             <div className="hidden lg:block">
-              <h1 className="text-lg font-semibold text-gray-900">
+              <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 Welcome back, {user?.name}!
               </h1>
-              <p className="text-sm text-gray-600 capitalize">
+              <p className="text-sm text-gray-600 dark:text-gray-100 capitalize">
                 {user?.role?.toLowerCase()} Dashboard
               </p>
             </div>
@@ -111,11 +111,11 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
 
             {/* Dropdown Menu */}
             {isUserMenuOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 py-1 z-50">
                 {/* Profile Link */}
                 <Link href="/dashboard/profile">
                   <div
-                    className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-gray-100 cursor-pointer"
                     onClick={() => handleMenuItemClick()}
                   >
                     <User className="w-4 h-4" />
@@ -128,7 +128,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
                 {/* Logout Button */}
                 <button
                   onClick={() => handleMenuItemClick(logout)}
-                  className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
+                  className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-gray-700 cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Logout</span>

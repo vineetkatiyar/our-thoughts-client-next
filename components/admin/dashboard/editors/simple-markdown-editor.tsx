@@ -188,7 +188,7 @@ export function MarkdownEditor({ value, onChange, onBlur, placeholder }: Markdow
 
       {/* Edit Mode */}
       {viewMode === 'edit' && (
-        <div className="bg-white rounded-lg">
+        <div className=" rounded-lg">
           {/* Mobile Toolbar Toggle */}
           <div className="lg:hidden flex justify-between items-center p-3 border-b">
             <span className="text-sm font-medium">Formatting Tools</span>
@@ -368,7 +368,7 @@ export function MarkdownEditor({ value, onChange, onBlur, placeholder }: Markdow
 
       {/* Preview Mode */}
       {viewMode === 'preview' && (
-        <div className="bg-white rounded-lg">
+        <div className=" rounded-lg">
           <div className="p-4 lg:p-6 border-b">
             <div className="flex items-center gap-2 text-sm lg:text-base font-medium">
               <Eye className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -377,7 +377,7 @@ export function MarkdownEditor({ value, onChange, onBlur, placeholder }: Markdow
           </div>
           
           <div className="p-4 lg:p-6">
-            <div className="min-h-[400px] lg:min-h-[500px] p-4 lg:p-6 bg-white prose prose-sm lg:prose-lg max-w-none">
+            <div className="min-h-[400px] lg:min-h-[500px] p-4 lg:p-6 prose prose-sm lg:prose-lg max-w-none">
               {value ? (
                 <ReactMarkdown
                   components={{

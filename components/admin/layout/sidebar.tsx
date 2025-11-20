@@ -37,10 +37,10 @@ export default function DashboardSidebar({
 
   if (!mobile) {
     return (
-      <aside className="w-60 bg-white h-full ">
+      <aside className="w-60 h-full ">
         <div className="p-6">
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               {isAdmin ? "Admin Panel" : "My Dashboard"}
             </h2>
           </div>
@@ -53,7 +53,7 @@ export default function DashboardSidebar({
                 className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   pathname === item.href
                     ? "bg-[#4DAA57] text-white"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
                 }`}
               >
                 <span className="text-lg">{item.icon}</span>

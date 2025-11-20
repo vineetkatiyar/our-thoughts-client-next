@@ -11,7 +11,7 @@ interface StoryCardProps {
 
 export default function StoryCard({ story }: StoryCardProps) {
   return (
-    <article className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-200">
+    <article className=" p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-200">
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-3">
@@ -23,7 +23,7 @@ export default function StoryCard({ story }: StoryCardProps) {
             {story.author.name.charAt(0).toUpperCase()}
           </div>
           <div>
-            <div className="font-semibold text-gray-900">
+            <div className="font-semibold text-gray-900 dark:text-[#4DAA57]">
               {story.author.name}
             </div>
             <div className="text-sm text-gray-500">
@@ -34,10 +34,10 @@ export default function StoryCard({ story }: StoryCardProps) {
       </div>
 
       {/* Story Title */}
-      <h3 className="font-bold text-lg text-gray-900 mb-2">{story.title}</h3>
+      <h3 className="font-bold text-lg text-gray-900 dark:text-[#4DAA57]  mb-2">{story.title}</h3>
 
       {/* Story Content Preview */}
-      <p className="text-gray-700 leading-relaxed mb-4">
+      <p className="text-gray-700 dark:text-gray-100 leading-relaxed mb-4">
         {truncateContent(story.content)}
       </p>
 

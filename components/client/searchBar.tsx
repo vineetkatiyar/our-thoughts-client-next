@@ -32,7 +32,7 @@ export default function SearchBar({
         type="text"
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
         placeholder={placeholder}
       />
     </div>

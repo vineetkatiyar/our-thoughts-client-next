@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, User, LogOut, Settings, LayoutDashboard } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
 import { useLogout } from "@/hooks/useLogout";
+import { ModeToggle } from "../theme/theme-component";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b md:rounded-full rounded max-w-2xl mx-auto">
+    <nav className=" shadow-sm border-b md:rounded-full rounded max-w-2xl mx-auto">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
@@ -64,20 +65,24 @@ export default function Navbar() {
 
                   {/* Dropdown Menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 py-1 z-50">
                       <Link href="/dashboard/profile" className="block">
-                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-100  dark:hover:bg-gray-800 cursor-pointer">
                           <User className="w-4 h-4" />
                           <span>Profile</span>
                         </div>
                       </Link>
 
                       <Link href="/dashboard" className="block">
-                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                        <div className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-100  dark:hover:bg-gray-800 cursor-pointer">
                           <LayoutDashboard className="w-4 h-4" />
                           <span>Dashboard</span>
                         </div>
                       </Link>
+                      <div>
+
+                      <ModeToggle />
+                      </div>
 
                       <div className="border-t border-gray-200 my-1"></div>
 
@@ -111,7 +116,7 @@ export default function Navbar() {
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
-              <Menu />
+              <Menu  className="w-6 h-6 cursor-pointer"/>
             </button>
           </div>
         </div>
@@ -124,12 +129,12 @@ export default function Navbar() {
                 <div className="space-y-2">
                   {/* Dashboard - Mobile - NO onClick */}
                   <Link href="/dashboard" className="block">
-                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-gray-100">
+                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
                       <div className="w-8 h-8 bg-[#4DAA57] rounded-full flex items-center justify-center text-white text-sm font-medium">
                         {getUserInitial()}
                       </div>
                       <div>
-                        <div className="text-gray-900 font-medium">
+                        <div className="text-gray-900 dark:text-gray-100 font-medium">
                           {user?.name}
                         </div>
                         <div className="text-xs text-gray-500">Dashboard</div>
@@ -139,11 +144,12 @@ export default function Navbar() {
 
                   {/* Profile - Mobile - NO onClick */}
                   <Link href="/dashboard/profile" className="block">
-                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">
+                    <div className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 ">
                       <User className="w-5 h-5" />
                       <span>My Profile</span>
                     </div>
                   </Link>
+                  <ModeToggle />
 
                   {/* Logout - Mobile - ONLY logout has onClick */}
                   <button

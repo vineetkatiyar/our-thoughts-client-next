@@ -86,7 +86,7 @@ export default function StoryViewModal({
               <div className="space-y-4">
                 <div className="flex flex-col gap-4">
                   {/* Title - Always on top */}
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                     {story.title}
                   </h1>
 
@@ -129,7 +129,7 @@ export default function StoryViewModal({
               </div>
 
               {/* Author and Timestamps */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-black rounded-lg">
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <User className="h-4 w-4 text-gray-500" />
@@ -161,10 +161,10 @@ export default function StoryViewModal({
 
               {/* Content Preview - WITH REACT MARKDOWN */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                   Content Preview
                 </h3>
-                <div className="border rounded-lg p-6 bg-white">
+                <div className="border rounded-lg p-6">
                   {content ? (
                     <div className="markdown-content">
                       <ReactMarkdown
@@ -172,32 +172,32 @@ export default function StoryViewModal({
                         components={{
                           // Custom styling for beautiful rendering
                           h1: ({ children }) => (
-                            <h1 className="text-xl font-bold text-gray-900 mt-4 mb-2">
+                            <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-4 mb-2">
                               {children}
                             </h1>
                           ),
                           h2: ({ children }) => (
-                            <h2 className="text-lg font-bold text-gray-900 mt-3 mb-2">
+                            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-3 mb-2">
                               {children}
                             </h2>
                           ),
                           h3: ({ children }) => (
-                            <h3 className="text-base font-bold text-gray-900 mt-3 mb-1">
+                            <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3 mb-1">
                               {children}
                             </h3>
                           ),
                           p: ({ children }) => (
-                            <p className="text-gray-700 leading-relaxed mb-3">
+                            <p className="text-gray-700 dark:text-gray-200 leading-relaxed mb-3">
                               {children}
                             </p>
                           ),
                           strong: ({ children }) => (
-                            <strong className="font-bold text-gray-900">
+                            <strong className="font-bold text-gray-900 dark:text-gray-100">
                               {children}
                             </strong>
                           ),
                           em: ({ children }) => (
-                            <em className="italic text-gray-800">{children}</em>
+                            <em className="italic text-gray-800 dark:text-gray-100">{children}</em>
                           ),
                           ul: ({ children }) => (
                             <ul className="list-disc list-inside space-y-1 my-2 ml-4">
@@ -210,12 +210,12 @@ export default function StoryViewModal({
                             </ol>
                           ),
                           li: ({ children }) => (
-                            <li className="text-gray-700 leading-relaxed">
+                            <li className="text-gray-700 dark:text-gray-200 leading-relaxed">
                               {children}
                             </li>
                           ),
                           blockquote: ({ children }) => (
-                            <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 bg-green-50 py-1 rounded-r">
+                            <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 dark:text-gray-300 bg-green-50 py-1 rounded-r">
                               {children}
                             </blockquote>
                           ),
@@ -224,7 +224,7 @@ export default function StoryViewModal({
 
                             if (isInline) {
                               return (
-                                <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800">
+                                <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800 dark:text-gray-100">
                                   {children}
                                 </code>
                               );

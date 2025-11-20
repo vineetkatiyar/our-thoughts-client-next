@@ -40,9 +40,9 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Header - Fixed */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200 h-[73px]">
+      <div className="fixed top-0 left-0 right-0 z-50 shadow-sm border-b border-gray-200 h-[73px]">
         <DashboardHeader onMenuClick={() => setIsMobileSidebarOpen(true)} />
       </div>
       
@@ -50,7 +50,7 @@ export default function DashboardLayout({
       <div className="flex flex-1 pt-[73px]"> {/* Add padding top for fixed header */}
         {/* Desktop Sidebar - Fixed */}
         <div className="hidden lg:block">
-          <div className="fixed top-[73px] left-0 bottom-0 w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <div className="fixed top-[73px] left-0 bottom-0 w-64 border-r border-gray-200 overflow-y-auto">
             <DashboardSidebar />
           </div>
         </div>

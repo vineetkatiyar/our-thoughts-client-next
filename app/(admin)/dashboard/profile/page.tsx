@@ -132,8 +132,8 @@ export default function ProfilePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">My Profile</h1>
-          <p className="text-gray-600 mt-1">Manage your account information</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">My Profile</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-1">Manage your account information</p>
         </div>
 
         {!isEditing ? (
@@ -200,7 +200,7 @@ export default function ProfilePage() {
                   <div>
                     <Label
                       htmlFor="name"
-                      className="text-sm font-medium text-gray-700 mb-2"
+                      className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >
                       Name *
                     </Label>
@@ -218,7 +218,7 @@ export default function ProfilePage() {
                   <div>
                     <Label
                       htmlFor="email"
-                      className="text-sm font-medium text-gray-700 mb-2"
+                      className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >
                       Email *
                     </Label>
@@ -237,10 +237,10 @@ export default function ProfilePage() {
                 </div>
               ) : (
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900">
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
                     {currentUser.name}
                   </h3>
-                  <div className="flex items-center text-gray-600 mt-1">
+                  <div className="flex items-center text-gray-600 dark:text-gray-300 mt-1">
                     <Mail className="w-4 h-4 mr-2" />
                     {currentUser.email}
                   </div>
@@ -253,7 +253,7 @@ export default function ProfilePage() {
           <div className="max-w-2xl">
             <Label
               htmlFor="bio"
-              className="text-sm font-medium text-gray-700 mb-2"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
               Bio
             </Label>
@@ -267,7 +267,7 @@ export default function ProfilePage() {
                 className="resize-none"
               />
             ) : (
-              <p className="text-gray-700 bg-gray-50 p-4 rounded-lg min-h-[100px] border border-gray-200">
+              <p className="text-gray-700 dark:text-gray-100 bg-gray-50 dark:bg-muted p-4 rounded-lg min-h-[100px] border border-gray-200">
                 {userBio || "No bio provided"}
               </p>
             )}

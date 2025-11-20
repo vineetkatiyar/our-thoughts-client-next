@@ -12,7 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UsersTableLoading() {
   return (
-    <div className="rounded-md border border-gray-200 bg-white">
+    <div className="rounded-md border border-gray-200">
       <Table>
         <TableHeader>
           <TableRow>

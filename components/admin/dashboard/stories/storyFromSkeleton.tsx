@@ -17,7 +17,7 @@ export function StoryFormSkeleton() {
           {/* Main Content Skeleton */}
           <div className="lg:col-span-2 space-y-4 lg:space-y-6">
             {/* Title Card Skeleton */}
-            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white p-4 lg:p-6">
+            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white dark:bg-muted p-4 lg:p-6">
               <div className="w-24 h-5 bg-gray-200 rounded animate-pulse mb-4" />
               <div className="w-full h-20 bg-gray-200 rounded animate-pulse mb-2" />
               <div className="flex justify-between">
@@ -27,7 +27,7 @@ export function StoryFormSkeleton() {
             </div>
   
             {/* Content Editor Skeleton */}
-            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white p-4 lg:p-6">
+            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white dark:bg-muted p-4 lg:p-6">
               <div className="w-16 h-5 bg-gray-200 rounded animate-pulse mb-4" />
               <div className="space-y-3">
                 <div className="w-full h-4 bg-gray-200 rounded animate-pulse" />
@@ -41,7 +41,7 @@ export function StoryFormSkeleton() {
           {/* Sidebar Skeleton */}
           <div className="space-y-4 lg:space-y-6">
             {/* Publish Settings Skeleton */}
-            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white p-4 lg:p-6">
+            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white dark:bg-muted p-4 lg:p-6">
               <div className="w-32 h-5 bg-gray-200 rounded animate-pulse mb-4" />
               <div className="space-y-4">
                 <div className="space-y-3">
@@ -74,7 +74,7 @@ export function StoryFormSkeleton() {
             </div>
   
             {/* Actions Skeleton */}
-            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg bg-white p-4 lg:p-6 sticky bottom-2 lg:static bg-white/95 lg:bg-white backdrop-blur-sm lg:backdrop-blur-none z-10">
+            <div className="border-0 lg:border shadow-sm lg:shadow rounded-lg  p-4 lg:p-6 sticky bottom-2 lg:static backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="space-y-2">
                 <div className="w-full h-10 bg-gray-200 rounded animate-pulse" />
                 <div className="w-full h-10 bg-gray-200 rounded animate-pulse" />

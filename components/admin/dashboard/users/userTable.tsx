@@ -99,7 +99,7 @@ export default function UsersTable({ users, isLoading }: UsersTableProps) {
 
   return (
     <>
-      <div className="rounded-md border border-gray-200 bg-white">
+      <div className="rounded-md border border-gray-200">
         <Table>
           <TableHeader>
             <TableRow>
@@ -129,7 +129,7 @@ export default function UsersTable({ users, isLoading }: UsersTableProps) {
                         {user.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-gray-900 dark:text-gray-100">
                           {user.name}
                         </p>
                         <div className="flex items-center text-sm text-gray-500 mt-1">
@@ -218,7 +218,7 @@ export default function UsersTable({ users, isLoading }: UsersTableProps) {
                         variant="outline"
                         size="sm"
                         onClick={() => handleViewUser(user.id)}
-                        className="border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
+                        className="border-gray-200 text-gray-600 dark:text-gray-100 hover:bg-gray-50 hover:text-gray-700 cursor-pointer"
                       >
                         <Eye className="w-4 h-4" />
                       </Button>
@@ -251,7 +251,7 @@ export default function UsersTable({ users, isLoading }: UsersTableProps) {
                             <AlertDialogDescription>
                               This action cannot be undone. This will
                               permanently delete the user account for
-                              <span className="font-semibold text-gray-900">
+                              <span className="font-semibold text-gray-900 dark:text-gray-100">
                                 {" "}
                                 {userToDelete?.name}
                               </span>{" "}

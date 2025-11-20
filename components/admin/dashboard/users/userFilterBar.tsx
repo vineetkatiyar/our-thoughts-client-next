@@ -49,7 +49,7 @@ export default function UsersFilterBar({
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="p-4 rounded-lg border border-gray-200">
       {/* Desktop Layout - Unchanged */}
       <div className="hidden sm:flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="flex-1 w-full sm:max-w-md">

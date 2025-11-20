@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function DashboardLoading() {
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-black/50 p-6">
       {/* Header Skeleton */}
       <div className="mb-6">
         <Skeleton className="h-8 w-64 mb-2" />

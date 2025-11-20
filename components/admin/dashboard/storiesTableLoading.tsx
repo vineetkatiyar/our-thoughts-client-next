@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function StoriesTableLoading() {
   return (
-    <div className="rounded-md border border-gray-200 bg-white">
+    <div className="rounded-md border border-gray-200 bg-white dark:bg-black/50">
       <Table>
         <TableHeader>
           <TableRow>

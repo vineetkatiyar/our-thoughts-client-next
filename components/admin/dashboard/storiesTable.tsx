@@ -86,7 +86,7 @@ export default function StoriesTable({
 
   return (
     <>
-      <div className="rounded-md border border-gray-200 bg-white">
+      <div className="rounded-md border border-gray-200">
         <Table>
           <TableHeader>
             <TableRow>
@@ -106,7 +106,7 @@ export default function StoriesTable({
                   className="h-24 text-center"
                 >
                   <div className="flex flex-col items-center justify-center space-y-4">
-                    <p className="text-gray-500">No stories found</p>
+                    <p className="text-gray-500 dark:text-gray-100">No stories found</p>
                     <Link href="/dashboard/stories/create">
                       <Button className="bg-[#4DAA57] hover:bg-[#3d8a47] text-white">
                         Create Your First Story
@@ -120,10 +120,10 @@ export default function StoriesTable({
                 <TableRow key={story.id} className="hover:bg-gray-50/50">
                   <TableCell className="font-medium">
                     <div>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-gray-900 dark:text-gray-100">
                         {story.title}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">{story.slug}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">{story.slug}</p>
                     </div>
                   </TableCell>
 
@@ -133,7 +133,7 @@ export default function StoriesTable({
                         <div className="w-6 h-6 bg-[#4DAA57] rounded-full flex items-center justify-center text-white text-xs font-medium">
                           {story.author.name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="text-gray-700">
+                        <span className="text-gray-700 dark:text-gray-200">
                           {story.author.name}
                         </span>
                       </div>
@@ -246,7 +246,7 @@ export default function StoriesTable({
                             <AlertDialogDescription>
                               This action cannot be undone. This will
                               permanently delete
-                              <span className="font-semibold text-gray-900">
+                              <span className="font-semibold text-gray-900 dark:text-gray-100">
                                 {" "}
                                 "{storyToDelete?.title}"
                               </span>

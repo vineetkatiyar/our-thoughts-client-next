@@ -190,10 +190,10 @@ export default function UserViewModal({
                   </div>
                 ) : (
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                       {user.name}
                     </h3>
-                    <div className="flex items-center text-gray-600 mt-1">
+                    <div className="flex items-center text-gray-600 dark:text-gray-300 mt-1">
                       <Mail className="w-4 h-4 mr-2" />
                       {user.email}
                     </div>
@@ -206,7 +206,7 @@ export default function UserViewModal({
             <div>
               <Label
                 htmlFor="bio"
-                className="text-sm font-medium text-gray-700 mb-2"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Bio
               </Label>
@@ -219,7 +219,7 @@ export default function UserViewModal({
                   rows={3}
                 />
               ) : (
-                <p className="text-gray-700 bg-gray-50 p-3 rounded-lg min-h-[80px]">
+                <p className="text-gray-700 bg-gray-50 dark:bg-gray-800 dark:text-gray-100 p-3 rounded-lg min-h-[80px]">
                   {user.bio || "No bio provided"}
                 </p>
               )}

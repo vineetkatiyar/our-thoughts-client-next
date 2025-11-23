@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useLogout } from "@/hooks/useLogout";
 import { useUser } from "@/hooks/useUser";
 import { Menu, LogOut, User, Settings } from "lucide-react";
+import { ModeToggle } from "@/components/theme/theme-component";
 
 interface DashboardHeaderProps {
   onMenuClick: () => void;
@@ -48,7 +49,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
   };
 
   return (
-    <header className=" sticky top-0 z-40 dark:bg-black">
+    <header className=" sticky top-0 z-40 bg-white dark:bg-black">
       <div className="flex justify-between items-center px-4 lg:px-6 py-3">
         {/* Left Side - Menu + Name */}
         <div className="flex items-center space-x-3">
@@ -123,6 +124,8 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
                   </div>
                 </Link>
 
+                <div className="border-t border-gray-200 my-1"></div>
+                <ModeToggle />
                 <div className="border-t border-gray-200 my-1"></div>
 
                 {/* Logout Button */}

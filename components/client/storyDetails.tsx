@@ -108,12 +108,12 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                 components={{
                   // FIXED: Minimal spacing
                   h1: ({ children }) => (
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white pt-3 md:pt-4">
                       {children}
                     </h1>
                   ),
                   h2: ({ children }) => (
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <h2 className="text-xl dark:text-[#4DAA57] font-bold text-gray-900 py-2">
                       {children}
                     </h2>
                   ),
@@ -140,7 +140,9 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                     </strong>
                   ),
                   em: ({ children }) => (
-                    <em className="italic text-gray-800 dark:text-gray-100">{children}</em>
+                    <em className="italic text-gray-800 dark:text-gray-100">
+                      {children}
+                    </em>
                   ),
                   ul: ({ children }) => (
                     <ul className="list-disc list-inside space-y-0 ml-4">
@@ -164,7 +166,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                     </li>
                   ),
                   blockquote: ({ children }) => (
-                    <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 dark:text-gray-100 bg-green-50 py-1 rounded-r">
+                    <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 bg-green-50 dark:bg-black py-1 dark:text-black rounded-r">
                       {children}
                     </blockquote>
                   ),
@@ -226,7 +228,6 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                 {content}
               </ReactMarkdown>
             </div>
-
           </div>
         </article>
 

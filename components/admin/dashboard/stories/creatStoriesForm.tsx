@@ -50,7 +50,7 @@ export default function CreateStoryForm({
     watch,
     setValue,
     reset,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
   } = useForm<CreateStoryFormData>({
     resolver: zodResolver(createStorySchema),
     defaultValues: {
@@ -59,7 +59,7 @@ export default function CreateStoryForm({
       status: "DRAFT",
       visibility: "PUBLIC",
     },
-    mode: "onChange", // ✅ Real-time validation
+    mode: "onChange",
   });
 
   const watchedFields = watch();
@@ -76,7 +76,6 @@ export default function CreateStoryForm({
     }
   }, [mode, storyData, reset]);
 
-  // ✅ FIX: Check if form has minimum valid data
   const hasMinimumData = watchedFields.title.trim().length >= 3 && 
                         watchedFields.content.trim().length > 0;
 
@@ -108,11 +107,9 @@ export default function CreateStoryForm({
     }
   };
 
-  // ✅ FIX: Remove problematic keydown handlers
   const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Allow default behavior for title textarea
     if (e.key === "Enter") {
-      e.stopPropagation(); // Only prevent form submission, not textarea behavior
+      e.stopPropagation();
     }
   };
 
@@ -133,7 +130,6 @@ export default function CreateStoryForm({
     return mode === "create" ? "Save Story" : "Update Story";
   };
 
-  // ✅ FIX: Better button disabled logic
   const isSubmitDisabled = 
     isPending || 
     !hasMinimumData || 

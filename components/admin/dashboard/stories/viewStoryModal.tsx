@@ -215,7 +215,7 @@ export default function StoryViewModal({
                             </li>
                           ),
                           blockquote: ({ children }) => (
-                            <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 dark:text-gray-300 bg-green-50 py-1 rounded-r">
+                            <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 dark:text-gray-300 bg-green-50 dark:bg-gray-800 py-1 rounded-r">
                               {children}
                             </blockquote>
                           ),

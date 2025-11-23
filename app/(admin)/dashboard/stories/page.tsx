@@ -110,7 +110,7 @@ export default function StoriesPage() {
         </CardContent>
       </Card>
 
-      {!isLoading && stories.length === 0 && (
+      {isLoading && (
         <Card>
           <CardContent className="p-12 text-center">
             <div className="space-y-4">

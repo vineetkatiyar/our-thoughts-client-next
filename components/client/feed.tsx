@@ -6,7 +6,6 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import FilterBar from "./filterBar";
 import StoryCard from "./storyCard";
 
-// Debounce hook for search
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 

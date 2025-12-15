@@ -4,14 +4,13 @@ import Link from "next/link";
 import { formatTimeAgo } from "@/helper/formatTime";
 import { Story } from "@/types/stroyType";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm"; // Optional: GitHub Flavored Markdown support
+import remarkGfm from "remark-gfm";
 
 interface StoryDetailProps {
   story: Story;
 }
 
 export default function StoryDetail({ story }: StoryDetailProps) {
-  // Content extract function
   const extractContent = (content: any): string => {
     if (!content) return "";
 
@@ -36,7 +35,6 @@ export default function StoryDetail({ story }: StoryDetailProps) {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4">
-        {/* Back Button */}
         <div className="mb-6">
           <Link
             href="/"
@@ -57,10 +55,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
             </svg>
           </Link>
         </div>
-
-        {/* Story Card */}
-        <article className="rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {/* Cover Image (if available) */}
+        <article className="rounded-lg shadow-sm md:border border-gray-200 overflow-hidden">
           {story.coverImage && (
             <div className="w-full h-64 bg-gray-200">
               <img
@@ -71,9 +66,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
             </div>
           )}
 
-          {/* Story Content */}
-          <div className="p-8">
-            {/* Author Info */}
+          <div className="md:p-8 px-2">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
                 <div
@@ -96,17 +89,14 @@ export default function StoryDetail({ story }: StoryDetailProps) {
               </div>
             </div>
 
-            {/* Story Title */}
             <h1 className="text-3xl font-bold text-gray-900 dark:text-[#4DAA57] mb-6 leading-tight">
               {story.title}
             </h1>
 
-            {/* Story Content - FIXED SPACING */}
             <div className="markdown-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  // FIXED: Minimal spacing
                   h1: ({ children }) => (
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white pt-3 md:pt-4">
                       {children}
@@ -130,7 +120,6 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                   p: ({ children }) => (
                     <p className="text-gray-700 leading-normal dark:text-gray-100">
                       {" "}
-                      {/* mb-4 → mb-2 */}
                       {children}
                     </p>
                   ),
@@ -147,21 +136,18 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                   ul: ({ children }) => (
                     <ul className="list-disc list-inside space-y-0 ml-4">
                       {" "}
-                      {/* space-y-2 → space-y-0 */}
                       {children}
                     </ul>
                   ),
                   ol: ({ children }) => (
                     <ol className="list-decimal list-inside space-y-0 ml-4">
                       {" "}
-                      {/* space-y-2 → space-y-0 */}
                       {children}
                     </ol>
                   ),
                   li: ({ children }) => (
                     <li className="text-gray-700 leading-normal mb-0 dark:text-gray-100">
                       {" "}
-                      {/* mb-1 → mb-0 */}
                       {children}
                     </li>
                   ),
@@ -182,7 +168,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
                     }
 
                     return (
-                      <pre className="bg-gray-900 text-gray-100 p-2 rounded my-2 overflow-x-auto text-sm">
+                      <pre className="dark:bg-gray-900  text-green-600 dark:text-gray-100 p-2 rounded my-2 overflow-x-auto text-sm">
                         <code className="font-mono block">{children}</code>
                       </pre>
                     );

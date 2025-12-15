@@ -51,9 +51,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
   return (
     <header className=" sticky top-0 z-40 bg-white dark:bg-black">
       <div className="flex justify-between items-center px-4 lg:px-6 py-3">
-        {/* Left Side - Menu + Name */}
         <div className="flex items-center space-x-3">
-          {/* Hamburger Menu - Mobile Only */}
           <Button
             variant="ghost"
             size="sm"
@@ -62,10 +60,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
           >
             <Menu className="h-4 w-4" />
           </Button>
-
-          {/* User Info */}
           <div className="flex items-center space-x-3">
-            {/* Mobile: Only Name */}
             <div className="lg:hidden">
               <h1 className="text-base font-semibold text-gray-900 dark:text-gray-100">
                 {user?.name?.split(" ")[0]}
@@ -75,13 +70,12 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
               </p>
             </div>
 
-            {/* Desktop: Full Welcome */}
             <div className="hidden lg:block">
               <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 Welcome back, {user?.name}!
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-100 capitalize">
-                {user?.role?.toLowerCase()} Dashboard
+                <Link href="/">{user?.role?.toLowerCase()} Dashboard</Link>
               </p>
             </div>
           </div>

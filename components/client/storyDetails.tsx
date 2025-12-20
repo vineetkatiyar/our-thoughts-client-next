@@ -5,6 +5,7 @@ import { formatTimeAgo } from "@/helper/formatTime";
 import { Story } from "@/types/stroyType";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { ArrowLeft, Share2 } from "lucide-react";
 
 interface StoryDetailProps {
   story: Story;
@@ -34,25 +35,13 @@ export default function StoryDetail({ story }: StoryDetailProps) {
 
   return (
     <div className="min-h-screen py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="mb-6">
+      <div className="max-w-4xl mx-auto md:px-4 px-2">
+        <div className="mb-6 px-2">
           <Link
             href="/"
             className="inline-flex items-center text-sm font-medium text-[#4DAA57] "
           >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
+            <ArrowLeft />
           </Link>
         </div>
         <article className="rounded-lg shadow-sm md:border border-gray-200 overflow-hidden">
@@ -221,19 +210,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
         <div className="mt-6 flex justify-between items-center">
           {/* Share Button */}
           <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors cursor-pointer">
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-              />
-            </svg>
+            <Share2 />
             Share Story
           </button>
         </div>

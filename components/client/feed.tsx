@@ -24,15 +24,11 @@ function useDebounce<T>(value: T, delay: number): T {
 
 export default function Feed() {
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-
-  // Filter state
   const [filters, setFilters] = useState<FilterOptions>({
     search: "",
     sortBy: "createdAt",
     sortOrder: "desc",
   });
-
-  // Debounce search to avoid too many API calls
   const debouncedSearch = useDebounce(filters.search, 300);
 
   const {
@@ -48,13 +44,10 @@ export default function Feed() {
     search: debouncedSearch,
   });
 
-  // Flatten all stories from all pages - FIXED: data.pages exists from useInfiniteQuery
   const allStories: Story[] = data?.pages.flatMap((page) => page.data) || [];
 
-  // Get total items from first page
   const totalStories = data?.pages[0]?.pagination.totalItems || 0;
 
-  // Intersection Observer for infinite scroll
   useEffect(() => {
     if (!sentinelRef.current || !hasNextPage || isFetchingNextPage) return;
 
@@ -86,8 +79,7 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
-      {/* Filter Bar */}
+    <div className="max-w-2xl mx-auto md:px-4 px-2 py-6">
       <FilterBar
         filters={filters}
         onFiltersChange={handleFiltersChange}
@@ -95,7 +87,6 @@ export default function Feed() {
         isLoading={isLoading}
       />
 
-      {/* Loading State - Initial Load */}
       {isLoading && !data && (
         <div className="flex justify-center py-12">
           <div className="text-center">
@@ -123,7 +114,6 @@ export default function Feed() {
         </div>
       )}
 
-      {/* Error State */}
       {isError && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
           <div className="text-red-600 font-semibold mb-2">
@@ -141,7 +131,6 @@ export default function Feed() {
         </div>
       )}
 
-      {/* Stories List */}
       {!isLoading && (
         <div className="space-y-4">
           {allStories.map((story: Story) => (
@@ -150,7 +139,6 @@ export default function Feed() {
         </div>
       )}
 
-      {/* No Results State */}
       {!isLoading && allStories.length === 0 && filters.search && (
         <div className="text-center py-12">
           <div className="text-gray-500 text-lg mb-2">No stories found</div>
@@ -166,7 +154,6 @@ export default function Feed() {
         </div>
       )}
 
-      {/* No Stories at All */}
       {!isLoading && allStories.length === 0 && !filters.search && (
         <div className="text-center py-12">
           <div className="text-gray-500 text-lg mb-2">No stories yet</div>
@@ -176,10 +163,8 @@ export default function Feed() {
         </div>
       )}
 
-      {/* Sentinel for infinite scroll */}
       <div ref={sentinelRef} style={{ height: "1px" }} aria-hidden="true" />
 
-      {/* Loading indicator for next page */}
       {isFetchingNextPage && (
         <div
           className="flex justify-center py-8"
@@ -211,7 +196,6 @@ export default function Feed() {
         </div>
       )}
 
-      {/* End of feed message */}
       {!hasNextPage && allStories.length > 0 && (
         <div className="text-center py-8 text-gray-500 border-t border-gray-200 mt-8">
           You've reached the end of the feed

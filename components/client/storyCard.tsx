@@ -4,6 +4,7 @@ import Link from "next/link";
 import { formatTimeAgo } from "@/helper/formatTime";
 import { truncateContent } from "@/helper/truncateContent";
 import { Story } from "@/types/stroyType";
+import { ArrowRight } from "lucide-react";
 
 interface StoryCardProps {
   story: Story;
@@ -11,8 +12,7 @@ interface StoryCardProps {
 
 export default function StoryCard({ story }: StoryCardProps) {
   return (
-    <article className=" p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-200">
-      {/* Header */}
+    <article className=" md:p-6 p-2 md:rounded-lg rounded md:border border-gray-200 border-b hover:shadow-md transition-shadow duration-200">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-3">
           <div
@@ -33,21 +33,23 @@ export default function StoryCard({ story }: StoryCardProps) {
         </div>
       </div>
 
-      {/* Story Title */}
-      <h3 className="font-bold text-lg text-gray-900 dark:text-[#4DAA57]  mb-2">{story.title}</h3>
+      <h3 className="font-bold text-lg text-gray-900 dark:text-[#4DAA57]  mb-2">
+        {story.title}
+      </h3>
 
-      {/* Story Content Preview */}
       <p className="text-gray-700 dark:text-gray-100 leading-relaxed mb-4">
         {truncateContent(story.content)}
       </p>
 
-      {/* Read More Link */}
       <Link
         href={`/story/${story.slug}`}
         className="inline-flex items-center text-sm font-semibold"
         style={{ color: "#4DAA57" }}
       >
-        Read more →
+        Read more{" "}
+        <span className="px-2">
+          <ArrowRight />
+        </span>
       </Link>
     </article>
   );

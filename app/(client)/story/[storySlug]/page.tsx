@@ -19,6 +19,14 @@ async function getStoryBySlug(slug: string) {
     throw new Error("Failed to load story");
   }
 }
+export async function generateMetadata({ params }: StoryPageProps) {
+  const storyData = await getStoryBySlug(params.storySlug);
+  const story = storyData.story;
+  return {
+    title: `${story.title} - StoryApp`,
+    description: story.content.substring(0, 160) + "...",
+  };
+}
 
 export default async function StoryPage({ params }: StoryPageProps) {
   const storyData = await getStoryBySlug(params.storySlug);
@@ -28,13 +36,4 @@ export default async function StoryPage({ params }: StoryPageProps) {
       <StoryDetail story={storyData.story} />
     </Suspense>
   );
-}
-
-export async function generateMetadata({ params }: StoryPageProps) {
-  const storyData = await getStoryBySlug(params.storySlug);
-  const story = storyData.story;
-  return {
-    title: `${story.title} - StoryApp`,
-    description: story.content.substring(0, 160) + "...",
-  };
 }

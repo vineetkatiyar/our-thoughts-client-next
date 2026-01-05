@@ -5,7 +5,10 @@ import { formatTimeAgo } from "@/helper/formatTime";
 import { Story } from "@/types/stroyType";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import { ArrowLeft, Share2 } from "lucide-react";
+
+import "highlight.js/styles/github-dark.css";
 
 interface StoryDetailProps {
   story: Story;
@@ -14,11 +17,7 @@ interface StoryDetailProps {
 export default function StoryDetail({ story }: StoryDetailProps) {
   const extractContent = (content: any): string => {
     if (!content) return "";
-
-    if (typeof content === "string") {
-      return content;
-    }
-
+    if (typeof content === "string") return content;
     if (typeof content === "object") {
       return (
         content.raw ||
@@ -27,24 +26,15 @@ export default function StoryDetail({ story }: StoryDetailProps) {
         JSON.stringify(content)
       );
     }
-
     return String(content);
   };
 
   const content = extractContent(story.content);
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="min-h-screen py-4">
       <div className="max-w-4xl mx-auto md:px-4 px-2">
-        <div className="mb-6 px-2">
-          <Link
-            href="/"
-            className="inline-flex items-center text-sm font-medium text-[#4DAA57] "
-          >
-            <ArrowLeft />
-          </Link>
-        </div>
-        <article className="rounded-lg shadow-sm md:border border-gray-200 overflow-hidden">
+        <article className="rounded-lg shadow-sm md:border border-gray-200 dark:border-gray-700 overflow-hidden">
           {story.coverImage && (
             <div className="w-full h-64 bg-gray-200">
               <img
@@ -55,149 +45,84 @@ export default function StoryDetail({ story }: StoryDetailProps) {
             </div>
           )}
 
-          <div className="md:p-8 px-2">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-lg"
-                  style={{ backgroundColor: "#4DAA57" }}
-                >
-                  {story.author.name.charAt(0).toUpperCase()}
+          <div className="md:px-4 px-2 py-4">
+            {/* Author */}
+            <div className="flex items-center space-x-3 mb-6">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-lg"
+                style={{ backgroundColor: "#4DAA57" }}
+              >
+                {story.author.name.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900 dark:text-[#4DAA57]">
+                  {story.author.name}
                 </div>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-[#4DAA57] text-lg">
-                    {story.author.name}
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {formatTimeAgo(story.createdAt)}
-                    {story.updatedAt !== story.createdAt && (
-                      <span className="ml-2">• Edited</span>
-                    )}
-                  </div>
+                <div className="text-sm text-gray-500">
+                  {formatTimeAgo(story.createdAt)}
+                  {story.updatedAt !== story.createdAt && (
+                    <span className="ml-2">• Edited</span>
+                  )}
                 </div>
               </div>
             </div>
 
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-[#4DAA57] mb-6 leading-tight">
+            {/* Title */}
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-[#4DAA57] mb-6">
               {story.title}
             </h1>
 
+            {/* MARKDOWN CONTENT */}
             <div className="markdown-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
                 components={{
                   h1: ({ children }) => (
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white pt-3 md:pt-4">
+                    <h1 className="text-2xl font-bold mt-6 mb-3 text-gray-900 dark:text-white">
                       {children}
                     </h1>
                   ),
                   h2: ({ children }) => (
-                    <h2 className="text-xl dark:text-[#4DAA57] font-bold text-gray-900 py-2">
+                    <h2 className="text-xl font-bold mt-5 mb-2 text-gray-900 dark:text-[#4DAA57]">
                       {children}
                     </h2>
                   ),
-                  h3: ({ children }) => (
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      {children}
-                    </h3>
-                  ),
-                  h4: ({ children }) => (
-                    <h4 className="text-base font-bold text-gray-900 dark:text-white">
-                      {children}
-                    </h4>
-                  ),
                   p: ({ children }) => (
-                    <p className="text-gray-700 leading-normal dark:text-gray-100">
-                      {" "}
+                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed my-2">
                       {children}
                     </p>
                   ),
-                  strong: ({ children }) => (
-                    <strong className="font-bold text-gray-900 dark:text-white">
-                      {children}
-                    </strong>
-                  ),
-                  em: ({ children }) => (
-                    <em className="italic text-gray-800 dark:text-gray-100">
-                      {children}
-                    </em>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="list-disc list-inside space-y-0 ml-4">
-                      {" "}
-                      {children}
-                    </ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal list-inside space-y-0 ml-4">
-                      {" "}
-                      {children}
-                    </ol>
-                  ),
-                  li: ({ children }) => (
-                    <li className="text-gray-700 leading-normal mb-0 dark:text-gray-100">
-                      {" "}
-                      {children}
-                    </li>
-                  ),
                   blockquote: ({ children }) => (
-                    <blockquote className="border-l-4 border-green-500 pl-3 my-2 italic text-gray-600 bg-green-50 dark:bg-black py-1 dark:text-black rounded-r">
+                    <blockquote className="border-l-4 border-green-500 bg-green-50 dark:bg-gray-900 px-4 py-2 my-3 italic text-gray-700 dark:text-gray-200">
                       {children}
                     </blockquote>
                   ),
-                  code: ({ children, className }) => {
-                    const isInline = !className;
-
-                    if (isInline) {
-                      return (
-                        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm dark:text-gray-100 font-mono text-gray-800">
-                          {children}
-                        </code>
-                      );
-                    }
-
-                    return (
-                      <pre className="dark:bg-gray-900  text-green-600 dark:text-gray-100 p-2 rounded my-2 overflow-x-auto text-sm">
-                        <code className="font-mono block">{children}</code>
-                      </pre>
-                    );
-                  },
-                  a: ({ children, href }) => (
-                    <a
-                      href={href}
-                      className="text-green-600 hover:text-green-700 underline transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {children}
-                    </a>
-                  ),
                   table: ({ children }) => (
-                    <div className="overflow-x-auto my-2">
-                      <table className="min-w-full divide-y divide-gray-200 border border-gray-200 text-sm">
+                    <div className="overflow-x-auto my-4">
+                      <table className="min-w-full border border-gray-300 dark:border-gray-700 text-sm">
                         {children}
                       </table>
                     </div>
                   ),
                   thead: ({ children }) => (
-                    <thead className="bg-gray-50">{children}</thead>
-                  ),
-                  tbody: ({ children }) => (
-                    <tbody className="divide-y divide-gray-200">
+                    <thead className="bg-gray-100 dark:bg-gray-800">
                       {children}
-                    </tbody>
+                    </thead>
                   ),
                   th: ({ children }) => (
-                    <th className="px-3 py-1 text-left font-semibold text-gray-900 dark:text-white border-b">
+                    <th className="px-3 py-2 text-left font-semibold text-gray-900 dark:text-gray-100 border">
                       {children}
                     </th>
                   ),
                   td: ({ children }) => (
-                    <td className="px-3 py-1 text-gray-700 dark:text-gray-100 border-b">
+                    <td className="px-3 py-2 text-gray-800 dark:text-gray-200 border">
                       {children}
                     </td>
                   ),
-                  hr: () => <hr className="my-3 border-gray-300" />,
+                  hr: () => (
+                    <hr className="my-6 border-gray-300 dark:border-gray-700" />
+                  ),
                 }}
               >
                 {content}
@@ -206,11 +131,17 @@ export default function StoryDetail({ story }: StoryDetailProps) {
           </div>
         </article>
 
-        {/* Action Buttons */}
-        <div className="mt-6 flex justify-between items-center">
-          {/* Share Button */}
-          <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors cursor-pointer">
-            <Share2 />
+        {/* Actions */}
+        <div className="mt-6 flex justify-between gap-2">
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm font-medium dark:text-[#ffff] dark:bg-[#4DAA57] py-2 px-4 rounded-sm bg-[#4DAA57] text-[#4DAA57]"
+          >
+            <ArrowLeft className="mr-2" />
+            <span>Back</span>
+          </Link>
+          <button className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#4DAA57] hover:bg-green-700 cursor-pointer ">
+            <Share2 className="mr-2" />
             Share Story
           </button>
         </div>

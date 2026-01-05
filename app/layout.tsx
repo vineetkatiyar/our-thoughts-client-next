@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${serif.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geist.variable} ${serif.variable}`}
+    >
       <body className="font-sans antialiased">
         <ReactQueryProvider>
           <ThemeProvider

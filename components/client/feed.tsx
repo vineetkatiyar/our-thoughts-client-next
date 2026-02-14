@@ -79,7 +79,7 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto md:px-4 px-2 py-6">
+    <div className=" md:px-4 px-2 py-6">
       <FilterBar
         filters={filters}
         onFiltersChange={handleFiltersChange}

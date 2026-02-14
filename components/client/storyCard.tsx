@@ -43,13 +43,9 @@ export default function StoryCard({ story }: StoryCardProps) {
 
       <Link
         href={`/story/${story.slug}`}
-        className="inline-flex items-center text-sm font-semibold"
-        style={{ color: "#4DAA57" }}
+        className="inline-flex items-center text-sm font-semibold text-gray-300 bg-[#4DAA57] hover:bg-green-500 py-1 px-2 rounded-sm"
       >
-        Read more{" "}
-        <span className="px-2">
-          <ArrowRight />
-        </span>
+        Read more
       </Link>
     </article>
   );

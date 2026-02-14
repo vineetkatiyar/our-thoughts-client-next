@@ -135,7 +135,7 @@ export default function StoryDetail({ story }: StoryDetailProps) {
         <div className="mt-6 flex justify-between gap-2">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium dark:text-[#ffff] dark:bg-[#4DAA57] py-2 px-4 rounded-sm bg-[#4DAA57] text-[#4DAA57]"
+            className="inline-flex items-center text-sm font-medium text-[#ffff] dark:bg-[#4DAA57] py-2 px-4 rounded-sm bg-[#4DAA57]"
           >
             <ArrowLeft className="mr-2" />
             <span>Back</span>

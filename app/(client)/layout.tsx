@@ -8,7 +8,7 @@ export default function ClientLayout({
   return (
     <div>
       <Navbar />
-      <main className="max-w-2xl mx-auto">{children}</main>
+      <main className="max-w-3xl mx-auto">{children}</main>
     </div>
   );
 }

@@ -29,7 +29,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Trash2, Loader2, View, SquarePen } from "lucide-react";
+import { Trash2, Loader2, View, SquarePen, Eye } from "lucide-react";
 
 interface StoriesTableProps {
   stories: Story[];
@@ -206,7 +206,7 @@ export default function StoriesTable({
                         className="border-gray-300 hover:bg-gray-50 cursor-pointer "
                         onClick={() => handleViewStory(story.id)}
                       >
-                        <View />
+                        <Eye />
                       </Button>
 
                       <Link href={`/dashboard/stories/${story.id}/edit`}>

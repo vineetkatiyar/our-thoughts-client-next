@@ -15,7 +15,7 @@ async function getStoryBySlug(slug: string) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/story/${slug}`,
       {
-        cache: "no-store", // important
+        cache: "no-store",
         next: { revalidate: 0 },
       }
     );
